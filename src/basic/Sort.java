@@ -1,5 +1,7 @@
 package basic;
 
+import java.util.Arrays;
+
 public class Sort {
 
     public void select(int[] a){

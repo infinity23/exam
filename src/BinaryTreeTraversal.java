@@ -1,5 +1,6 @@
 import java.util.Deque;
 import java.util.LinkedList;
+import java.util.Queue;
 
 //二叉树遍历
 public class BinaryTreeTraversal {
@@ -86,6 +87,25 @@ public class BinaryTreeTraversal {
             }
             while(!stack2.isEmpty()){
                 System.out.println(stack2.pop().val);
+            }
+        }
+    }
+
+    //层次遍历
+    public void LaywerTraversal(TreeNode head){
+        if (head == null){
+            return;
+        }
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(head);
+        while(!queue.isEmpty()){
+            head = queue.poll();
+            System.out.println(head.val);
+            if(head.left != null){
+                queue.add(head.left);
+            }
+            if(head.right != null){
+                queue.add(head);
             }
         }
     }
