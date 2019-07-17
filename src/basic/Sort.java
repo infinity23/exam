@@ -1,9 +1,11 @@
 package basic;
 
 import java.util.Arrays;
+import java.util.LinkedList;
 
 public class Sort {
 
+    //选择排序
     public void select(int[] a){
         for (int i = 0; i < a.length - 1; i++) {
             int minIdx = i;
@@ -16,6 +18,7 @@ public class Sort {
         }
     }
 
+    //插入排序
     public void insert(int[] a){
         for (int i = 1; i < a.length; i++) {
             if(a[i] < a[i-1]) {
@@ -39,6 +42,7 @@ public class Sort {
         a[j] = temp;
     }
 
+    //冒泡排序
     public void bub(int[] a){
         for (int i = 0; i < a.length; i++) {
             for (int j = a.length; j > i; j--) {
@@ -49,6 +53,7 @@ public class Sort {
         }
     }
 
+//    希尔排序
     public void shell(int[] a){
         int n = a.length;
         int h = 1;
@@ -66,11 +71,13 @@ public class Sort {
         }
     }
 
+//    归并排序（递归）
     public void merge(int[] a){
         int[] aux = new int[a.length];
         mSort(a, 0, a.length - 1, aux);
     }
 
+//    归并排序（循环）
     public void merge2(int[]  a){
         int n = a.length;
         int[] aux = new int[n];
@@ -104,6 +111,7 @@ public class Sort {
         }
     }
 
+//    快速排序
     public void quick(int[] a){
         qSort(a, 0, a.length - 1);
     }
@@ -130,7 +138,7 @@ public class Sort {
         return j;
     }
 
-
+//    堆排序
     public void heap(int[] a){
         int len = a.length;
         for (int i = len/2; i >= 1 ; i--) {
@@ -149,6 +157,24 @@ public class Sort {
             if(a[i] >= a[j]) break;
             exch(a, i, j);
             i = j;
+        }
+    }
+
+    public void doubleStack(int[] a) {
+        if (a.length == 0) {
+            return;
+        }
+        LinkedList<Integer> stack1 = new LinkedList<>();
+        LinkedList<Integer> stack2 = new LinkedList<>();
+        for (int i = 0; i < a.length; i++) {
+            stack1.push(a[i]);
+        }
+        while(!stack1.isEmpty()) {
+            Integer top = stack1.pop();
+            while (!stack2.isEmpty() && top < stack2.peek()) {
+                stack1.push(stack2.pop());
+            }
+            stack2.push(top);
         }
     }
 
